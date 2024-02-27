@@ -1,0 +1,8 @@
+const dealElements = document.querySelectorAll('div.deal-logo-wrapper');
+count = 0
+// Simulate a click on each div element
+dealElements.forEach((deal) => {
+  deal.click();
+    count++;
+});
+console.log(count);
