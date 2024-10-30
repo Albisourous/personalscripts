@@ -1,1 +1,30 @@
-javascript:a=()=>{window.history.back(); setTimeout(c, Math.random() * 1000 + 300);}; c=()=> { btns=[...document.querySelectorAll('._1bof7fb8')].filter(b => b.childNodes[1].childNodes[0].type !== 'ico_checkmark_filled'); b = btns.pop(); if (!b) return console.log('added all!'); b.childNodes[0].click(); setTimeout(a, Math.random() * 1000 + 300); }; c();
+javascript:(function(){
+    a = () => {
+        console.log("Navigating back...");
+        window.history.back();
+        setTimeout(c, Math.random() * 1000 + 300);
+    };
+
+    c = () => {
+        // Select all elements with the main container structure, filtering out those with an ico_checkmark_filled icon
+        const btns = [...document.querySelectorAll('div[data-cy="commerce-tile"]')]
+            .filter(tile => !tile.querySelector('mds-icon[type="ico_checkmark_filled"]'));
+        
+        if (btns.length === 0) {
+            console.log("No matching elements found or all elements have been added!");
+            return;
+        }
+
+        const b = btns.pop();
+        if (!b) return console.log("Added all!");
+
+        console.log("Clicking on element:", b);
+        b.click();
+        
+        // Set the delay to call 'a' and go back after interacting
+        setTimeout(a, Math.random() * 1000 + 300);
+    };
+
+    console.log("Starting script...");
+    c();
+})();
